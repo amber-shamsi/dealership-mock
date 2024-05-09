@@ -43,7 +43,7 @@ public class CarController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Object> addKeyFeature (@RequestBody CreateCarRequest request){
+    public ResponseEntity<Object> createCar (@RequestBody CreateCarRequest request){
         Car car = carService.createCar(request);
 
         return new ResponseEntity<>(car, new HttpHeaders(), HttpStatus.CREATED);
