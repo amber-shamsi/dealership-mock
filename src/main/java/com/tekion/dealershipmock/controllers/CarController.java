@@ -2,7 +2,6 @@ package com.tekion.dealershipmock.controllers;
 
 import com.tekion.dealershipmock.entities.Car;
 import com.tekion.dealershipmock.models.requests.CreateCarRequest;
-import com.tekion.dealershipmock.models.responses.GetCarResponse;
 import com.tekion.dealershipmock.services.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +42,9 @@ public class CarController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Object> addKeyFeature (@RequestBody CreateCarRequest request){
+    public ResponseEntity<Object> createCar (@RequestBody CreateCarRequest request){
         Car car = carService.createCar(request);
 
         return new ResponseEntity<>(car, new HttpHeaders(), HttpStatus.CREATED);
-
     }
 }

@@ -1,6 +1,7 @@
 package com.tekion.dealershipmock.entities;
 
 import com.tekion.dealershipmock.models.requests.CreateCarRequest;
+import com.tekion.dealershipmock.models.requests.UpdateCarRequest;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,6 +20,18 @@ public class Car {
     }
 
     public Car(CreateCarRequest request){
+        this.carId= request.getCarId();
+        this.make = request.getMake();
+        this.model = request.getModel();
+        this.year = request.getYear();
+        this.vin = request.getVin();
+        this.colour = request.getColour();
+        this.mileage = request.getMileage();
+        this.price = request.getPrice();
+        this.status = request.getStatus();
+    }
+
+    public Car(UpdateCarRequest request){
         this.carId= request.getCarId();
         this.make = request.getMake();
         this.model = request.getModel();
