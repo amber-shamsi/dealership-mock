@@ -21,14 +21,15 @@ public class CarService implements ICarService {
     }
 
     public List<Car> getAll(){
-        return CarRepository.findAll();
+        return carRepository.findAll();
     }
 
-    public Optional<Car> getCar(int id){
-        return CarRepository.findById(id);
+    public Optional<Car> getCar(String id){
+        return carRepository.findById(id);
     }
 
     public Car createCar(CreateCarRequest createCarRequest){
-        return CarRepository.save(createCarRequest);
+        Car request = new Car(createCarRequest);
+        return carRepository.save(createCarRequest);
     }
 }

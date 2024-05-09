@@ -1,5 +1,6 @@
 package com.tekion.dealershipmock.controllers;
 
+import com.tekion.dealershipmock.entities.Car;
 import com.tekion.dealershipmock.models.requests.CreateCarRequest;
 import com.tekion.dealershipmock.models.responses.GetCarResponse;
 import com.tekion.dealershipmock.services.CarService;
@@ -31,8 +32,8 @@ public class CarController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Object> getCar ( @PathVariable("id") int id){
-        Optional<GetCarResponse> car = carService.getCar(id);
+    public ResponseEntity<Object> getCar ( @PathVariable("id") String id){
+        Optional<Car> car = carService.getCar(id);
 
         if (car.isEmpty()) {
             return new ResponseEntity<>("A car with that Id could not be found.", new HttpHeaders(), HttpStatus.NOT_FOUND);
@@ -43,7 +44,7 @@ public class CarController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Object> addKeyFeature (@RequestBody CreateCarRequest request){
-        GetCarResponse car = carService.createCar(request);
+        Car car = carService.createCar(request);
 
         return new ResponseEntity<>(car, new HttpHeaders(), HttpStatus.CREATED);
 
