@@ -22,7 +22,7 @@ public class CreateCarRequest {
     private String model;
 
     @Field(name = "year")
-    private Year year;
+    private String year;
 
     @Field(name = "vin")
     private String vin;

@@ -1,5 +1,6 @@
 package com.tekion.dealershipmock.controllers;
 
+import com.tekion.dealershipmock.CarEventProducer;
 import com.tekion.dealershipmock.entities.Car;
 import com.tekion.dealershipmock.models.requests.CreateCarRequest;
 import com.tekion.dealershipmock.services.CarService;
@@ -44,7 +45,7 @@ public class CarController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Object> createCar (@RequestBody CreateCarRequest request){
         Car car = carService.createCar(request);
-
+        CarEventProducer.sendEvent("car", "created");
         return new ResponseEntity<>(car, new HttpHeaders(), HttpStatus.CREATED);
     }
 }

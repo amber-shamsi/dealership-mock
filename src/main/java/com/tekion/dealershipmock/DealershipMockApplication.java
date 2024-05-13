@@ -5,7 +5,13 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cache.annotation.EnableCaching;
 
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@EnableCaching
 public class DealershipMockApplication {
 
 	public static void main(String[] args) {
@@ -17,7 +23,7 @@ public class DealershipMockApplication {
 				.applyConnectionString(new ConnectionString(connectionString))
 				.serverApi(serverApi)
 				.build();
-		// Create a new client and connect to the server
+		// Create a client and connect to the server
 		try (MongoClient mongoClient = MongoClients.create(settings)) {
 			try {
 				// Send a ping to confirm a successful connection
@@ -28,5 +34,6 @@ public class DealershipMockApplication {
 				e.printStackTrace();
 			}
 		}
+		SpringApplication.run(DealershipMockApplication.class, args);
 	}
 }
